@@ -19,5 +19,14 @@ class ParkingLotTest extends FunSuite {
     ParkingLot.addCarToParking("MH12 Al4344","White","0732")
     assert(ParkingLot.checkIfLotFull == false)
   }
+  // UC4
+  test("givenDetailsReturnRedirectMessageIfParkingLotFull") {
+    val message = ParkingLot.moveAirportStaff(true)
+    assert(message == "Redirect staff")
+  }
+  test("givenDetailsReturnStayMessageIfParkingLotNotFull") {
+    val message = ParkingLot.moveAirportStaff(false)
+    assert(message == "Let staff stay")
+  }
 
 }
