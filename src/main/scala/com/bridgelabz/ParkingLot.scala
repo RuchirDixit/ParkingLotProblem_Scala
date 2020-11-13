@@ -30,6 +30,21 @@ object ParkingLot {
       }
     }
   }
+
+  def unParkCar(numberPlate : String) = {
+    try{
+      map.foreach{ i =>
+        if (i._2.getNumberPlateValue.equals(numberPlate)){
+          map.remove(i._1)
+        }
+      }
+      "Car Unparked"
+    }
+    catch {
+      case _ : NoSuchElementException => "No car found"
+      case _ : Exception => "No car found"
+    }
+  }
   def main(args: Array[String]): Unit = {
     var choice = 99
     while(choice!=0)
@@ -40,8 +55,8 @@ object ParkingLot {
           case 1 => {
             addCarToParking("MH12","White","1215")
           }
-          case 2 => {
-
+          case 3 => {
+            unParkCar("MH12")
           }
           case 0 => {
             System.exit(1)
