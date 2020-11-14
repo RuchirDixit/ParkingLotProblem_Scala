@@ -1,6 +1,12 @@
 package com.bridgelabz
 import scala.collection.mutable.Map
-
+/**
+ *
+ * @param numberPlate : Number of vehicle
+ * @param colour : Colour of vehicle
+ * @param timeOfPark : Timing of parking the vehicle
+ * Class vehicle to store and get information about Vehicle
+ */
 class Vehicle(numberPlate : String,colour : String,timeOfPark : String)
 {
   def getNumberPlateValue = {
@@ -15,13 +21,22 @@ class Vehicle(numberPlate : String,colour : String,timeOfPark : String)
 }
 
 object ParkingLot {
+  // Mutable map to store int as keys and Vehicle objects as values
   var map : Map[Int,Vehicle] = Map()
   val MaxCapacityOfParkingLot = 2
 
+  /**
+   *
+   * @param numberPlate : Number of vehicle
+   * @param colour : Colour of vehicle
+   * @param timeOfPark : Timing of parking the vehicle
+   * @return : Messsage to check if car is parked or not
+   */
   def addCarToParking(numberPlate : String,colour : String,timeOfPark : String) = {
     try
       {
-      map += (1 -> new Vehicle(numberPlate,colour,timeOfPark))
+        var key = map.size
+      map += (key -> new Vehicle(numberPlate,colour,timeOfPark))
       "Parked"
     }
     catch {
@@ -31,8 +46,14 @@ object ParkingLot {
     }
   }
 
+  /**
+   *
+   * @param numberPlate : Number of vehicle
+   * @return : Message to check is car was unparked or not found
+   */
   def unParkCar(numberPlate : String) = {
     try{
+      // checking for car number plate to unpark
       map.foreach{ i =>
         if (i._2.getNumberPlateValue.equals(numberPlate)){
           map.remove(i._1)
@@ -46,11 +67,20 @@ object ParkingLot {
     }
   }
 
+  /**
+   *
+   * @param moveStatus : Move staff or not, True if required to move, False if Staff should stay
+   * @return : Message whether staff should stay or be redirected
+   */
   def moveAirportStaff(moveStatus : Boolean) = {
     if(moveStatus == true) "Redirect staff"
     else "Let staff stay"
   }
 
+  /**
+   *
+   * @return : Returns if parking lot is full ot not
+   */
   def checkIfLotFull = {
     if(map.size == MaxCapacityOfParkingLot){
       moveAirportStaff(true)
@@ -61,6 +91,7 @@ object ParkingLot {
       false
     }
   }
+  // main method with menu driven program
   def main(args: Array[String]): Unit = {
     var choice = 99
     while(choice!=0)
