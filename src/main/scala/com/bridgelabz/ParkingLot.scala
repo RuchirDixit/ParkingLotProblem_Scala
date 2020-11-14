@@ -1,7 +1,13 @@
 package com.bridgelabz
 import java.util.Calendar;
 import scala.collection.mutable.Map
-
+/**
+ *
+ * @param numberPlate : Number of vehicle
+ * @param colour : Colour of vehicle
+ * @param timeOfPark : Timing of parking the vehicle
+ * Class vehicle to store and get information about Vehicle
+ */
 class Vehicle(numberPlate : String,colour : String,timeOfPark : String)
 {
   def getNumberPlateValue = {
@@ -16,8 +22,16 @@ class Vehicle(numberPlate : String,colour : String,timeOfPark : String)
 }
 
 object ParkingLot {
+  // Mutable map to store int as keys and Vehicle objects as values
   var map : Map[Int,Vehicle] = Map()
 
+  /**
+   *
+   * @param numberPlate : Number of vehicle
+   * @param colour : Colour of vehicle
+   * @param timeOfPark : Timing of parking the vehicle
+   * @return : Messsage to check if car is parked or not
+   */
   def addCarToParking(numberPlate : String,colour : String,timeOfPark : String) = {
     try
       {
@@ -31,6 +45,11 @@ object ParkingLot {
     }
   }
 
+  /**
+   *
+   * @param numberPlate : Number of vehicle
+   * @return : Message to check if car is unparked or not found
+   */
   def unParkCar(numberPlate : String) = {
     try{
       map.foreach{ i =>
@@ -45,6 +64,7 @@ object ParkingLot {
       case _ : Exception => "No car found"
     }
   }
+  // main method with menu driven program
   def main(args: Array[String]): Unit = {
     var choice = 99
     while(choice!=0)
